@@ -48,6 +48,8 @@ async function getSkoly(){
         tr.appendChild(td9);
         tr.appendChild(btn);
         document.getElementById("results").appendChild(tr);
+        let f = document.createElement("tr")
+        tr.after()
         var marker = L.marker([att.y, att.x]).on('click', ()=>{
             alert(att.nazev);
         });
@@ -68,6 +70,7 @@ async function getStudentiSS(){
         //console.log(studentiSSarray);
         studentiSSarray.forEach(studenti => {
             let id = document.getElementById(studenti.attributes.ico);
+            
             //console.log(studenti.attributes.ico);
                 let tr = document.createElement("tr");
                 let ul = document.createElement("ul");
@@ -80,52 +83,74 @@ async function getStudentiSS(){
                 let li7 = document.createElement("li");
                 let li8 = document.createElement("li");
                 let par = document.createElement("p");
+                ul.appendChild(par);
                 par.innerHTML = studenti.attributes.obor_nazev;
                 par.id = studenti.attributes.obor_kod;
+                if(studenti.attributes.pocet_studentu_1_rocnik != 0){
+                    let p1 = document.createElement("p");
+                    p1.innerHTML = "Počet studentů v 1 ročníku";
+                    li1.innerHTML=studenti.attributes.pocet_studentu_1_rocnik;
+                    ul.appendChild(p1);
+                    ul.appendChild(li1);
 
-                let p1 = document.createElement("p");
-                p1.innerHTML = "Počet studentů v 1 ročníku";
-                li1.innerHTML=studenti.attributes.pocet_studentu_1_rocnik;
-                let p2 = document.createElement("p");
-                p2.innerHTML = "Počet studentů v 2 ročníku";
-                li2.innerHTML=studenti.attributes.pocet_studentu_2_rocnik;
-                let p3 = document.createElement("p");
-                p3.innerHTML = "Počet studentů v 3 ročníku";
-                li3.innerHTML=studenti.attributes.pocet_studentu_3_rocnik;
-                let p4 = document.createElement("p");
-                p4.innerHTML = "Počet studentů v 4 ročníku";
-                li4.innerHTML=studenti.attributes.pocet_studentu_4_rocnik;
-                let p5 = document.createElement("p");
-                p5.innerHTML = "Počet studentů v 5 ročníku";
-                li5.innerHTML=studenti.attributes.pocet_studentu_5_rocnik;
-                let p6 = document.createElement("p");
-                p6.innerHTML = "Počet studentů v 6 ročníku";
-                li6.innerHTML=studenti.attributes.pocet_studentu_6_rocnik;
-                let p7 = document.createElement("p");
-                p7.innerHTML = "Počet studentů v 7 ročníku";
-                li7.innerHTML=studenti.attributes.pocet_studentu_7_rocnik;
-                let p8 = document.createElement("p");
-                p8.innerHTML = "Počet studentů v 8 ročníku";
-                li8.innerHTML=studenti.attributes.pocet_studentu_8_rocnik;
-                ul.appendChild(par);
-                ul.appendChild(p1);
-                ul.appendChild(li1);
-                ul.appendChild(p2);
-                ul.appendChild(li2);
-                ul.appendChild(p3);
-                ul.appendChild(li3);
-                ul.appendChild(p4);
-                ul.appendChild(li4);
-                ul.appendChild(p5);
-                ul.appendChild(li5);
-                ul.appendChild(p6);
-                ul.appendChild(li6);
-                ul.appendChild(p7);
-                ul.appendChild(li7);
-                ul.appendChild(p8);
-                ul.appendChild(li8);
-                tr.append(ul)
-                id.after(ul);
+                }
+                if(studenti.attributes.pocet_studentu_2_rocnik != 0){
+                    let p2 = document.createElement("p");
+                    p2.innerHTML = "Počet studentů v 2 ročníku";
+                    li2.innerHTML=studenti.attributes.pocet_studentu_2_rocnik;
+                    ul.appendChild(p2);
+                    ul.appendChild(li2);
+
+                }
+                if(studenti.attributes.pocet_studentu_3_rocnik != 0){
+                    let p3 = document.createElement("p");
+                    p3.innerHTML = "Počet studentů v 3 ročníku";
+                    li3.innerHTML=studenti.attributes.pocet_studentu_3_rocnik;
+                    ul.appendChild(p3);
+                    ul.appendChild(li3);
+
+                }
+                if(studenti.attributes.pocet_studentu_4_rocnik != 0){
+                    let p4 = document.createElement("p");
+                    p4.innerHTML = "Počet studentů v 4 ročníku";
+                    li4.innerHTML=studenti.attributes.pocet_studentu_4_rocnik;
+                    ul.appendChild(p4);
+                    ul.appendChild(li4);
+
+                }
+                if(studenti.attributes.pocet_studentu_5_rocnik != 0){
+                    let p5 = document.createElement("p");
+                    p5.innerHTML = "Počet studentů v 5 ročníku";
+                    li5.innerHTML=studenti.attributes.pocet_studentu_5_rocnik;
+                    ul.appendChild(p5);
+                    ul.appendChild(li5);
+
+                }
+                if(studenti.attributes.pocet_studentu_6_rocnik != 0){
+                    let p6 = document.createElement("p");
+                    p6.innerHTML = "Počet studentů v 6 ročníku";
+                    li6.innerHTML=studenti.attributes.pocet_studentu_6_rocnik;
+                    ul.appendChild(p6);
+                    ul.appendChild(li6);
+
+                }
+                if(studenti.attributes.pocet_studentu_7_rocnik != 0){
+                    let p7 = document.createElement("p");
+                    p7.innerHTML = "Počet studentů v 7 ročníku";
+                    li7.innerHTML=studenti.attributes.pocet_studentu_7_rocnik;
+                    ul.appendChild(p7);
+                    ul.appendChild(li7);
+
+                }
+                if(studenti.attributes.pocet_studentu_8_rocnik != 0){
+                    let p8 = document.createElement("p");
+                    p8.innerHTML = "Počet studentů v 8 ročníku";
+                    li8.innerHTML=studenti.attributes.pocet_studentu_8_rocnik;
+                    ul.appendChild(p8);
+                    ul.appendChild(li8);
+                }               
+            tr.append(ul)
+            id.after(ul);
             
         });
     
@@ -240,5 +265,5 @@ function filtrovat(){
 }
 
 getSkoly();
-getStudentiSS();
-getStudentiVS();
+//getStudentiSS();
+//getStudentiVS();

@@ -4,10 +4,11 @@
 body{
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
+    overflow-x: hidden;
 }
 main{
     text-align: center;
-
+    width: 100%;
 }
 header{
     margin: auto;
@@ -49,4 +50,37 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
   height: 40px;
 
+}
+
+table {
+    width: 50%;
+    letter-spacing: 0px;
+}
+
+table tr {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+table tr button {
+    width: 150px;
+    height: 50;
+    align-self: center;
+}
+
+table ul li {
+    list-style-type: none;
+}
+
+table tr td:nth-child(1) {
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+table tr:nth-child(odd) {
+    background-color: rgb(170, 170, 255);
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(130, 130, 255);
 }

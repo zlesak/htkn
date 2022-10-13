@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+}
+main{
+    text-align: center;
+    width: 80%;
+
+}
+header{
+    background-color: blue;
+    color: white;
+
+}
+footer{
+    text-align: center;
+    color: white;
+}

@@ -48,6 +48,8 @@ async function getSkoly(){
         tr.appendChild(td9);
         tr.appendChild(btn);
         document.getElementById("results").appendChild(tr);
+        let f = document.createElement("tr")
+        tr.after()
         var marker = L.marker([att.y, att.x]).on('click', ()=>{
             alert(att.nazev);
         });
@@ -263,5 +265,5 @@ function filtrovat(){
 }
 
 getSkoly();
-getStudentiSS();
-getStudentiVS();
+//getStudentiSS();
+//getStudentiVS();

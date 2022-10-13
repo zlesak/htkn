@@ -18,13 +18,13 @@
     </header>
     <main id="main">
         <div id="filter">
-            <form action="#" id="filterForm">
+            <form onsubmit="" id="filterForm">
                 <select name="type" id="selectType">
                     <option value="" disabled selected>Typ zařízení</option></select>
                 <select name="town" id="selectTown" >
                     <option value="" disabled selected>Město</option></select>
                 <input type="number" name="distance" id="selectDistance" placeholder="Maximální vzdálenost">
-                <button>Filtrovat</button>
+                <button onclick="filtrovat()" type="button">Filtrovat</button>
             </form>
         </div>
         <div id="mapDiv">

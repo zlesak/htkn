@@ -20,7 +20,7 @@ async function getSkoly(){
             druhy.push(att.zarizeni_druh); 
         let tr = document.createElement("tr");
         tr.id = att.ico;
-        let td1 =  document.createElement("td");td1.innerHTML = att.nazev;
+        let td1 =  document.createElement("td");td1.innerHTML = att.nazev;td1.setAttribute("keyeee",att.nazev);
         let td2 = document.createElement("td"); td2.innerHTML = att.ico;
         let td3 = document.createElement("td"); td3.innerHTML = att.zarizeni_druh;
         if(!druhy.includes(td3.innerHTML))
@@ -177,6 +177,7 @@ function selecty(){
     for(i =0; i< druhy.length;i++){
         let op = document.createElement("option");
         op.innerHTML = druhy[i];
+        op.value = druhy[i];
         select.appendChild(op);
     }
 }
@@ -185,19 +186,46 @@ function filtrovat(){
     let type = document.getElementById("selectType").value;
     let tytown = document.getElementById("selectTown").value;
     let distance = document.getElementById("selectDistance").value;
+    let pokrocilyData;
+    if(distance != 0){
+        
+        navigator.geolocation.getCurrentPosition(function(location) {
+            let lat = location.coords.latitude;
+            let lon = location.coords.longitude;
+        }) 
+    }
+    if(type !=""){
+        pokrocilyData = document.getElementsByTagName("tr");
+        console.log(pokrocilyData)
+        for(i =0; i<pokrocilyData.length;i++){
+            console.log(type);
+            console.log(pokrocilyData[i].cells[2].innerHTML)
+            if(pokrocilyData[i].cells[2].innerHTML != type){
+                pokrocilyData[i].style.display = "none";
+            }
+            else{
+                pokrocilyData[i].style.display = "block";
 
+            }
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "php.php", true);
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            let odpoved = this.responseText;
-            document.getElementById("vystup").innerHTML = odpoved;
         }
-    };
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("email=" + email +"&login=" + login);
-    document.getElementById("vystup").value = "";
+    }
+    if(tytown != ""){
+        pokrocilyData = document.getElementsByTagName("tr");
+        for(i =0; i<pokrocilyData.length;i++){
+            if(pokrocilyData[i].cells[3].innerHTML != tytown){
+                pokrocilyData[i].style.display = "none";
+            }
+            else{
+                pokrocilyData[i].style.display = "block";
+
+            }
+
+        }
+
+    }
+
+
 }
 
 getSkoly();

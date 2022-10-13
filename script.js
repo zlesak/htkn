@@ -2,6 +2,7 @@ let skoly = "https://services6.arcgis.com/ogJAiK65nXL1mXAW/arcgis/rest/services/
 let studentiVS = "https://services6.arcgis.com/ogJAiK65nXL1mXAW/arcgis/rest/services/Počty_studentů_krajských_vyšších_odborných_škol/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
 let studentiSS = "https://services6.arcgis.com/ogJAiK65nXL1mXAW/arcgis/rest/services/Počty_žáků_v_oborech_středních_škol_zřizovaných_krajem/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json";
 let druhy = [];
+let mesta = [];
 let skolyData;
 let studentiVSarray;
 let obj;
@@ -18,6 +19,8 @@ async function getSkoly(){
         let att = skola.attributes;
         if(!druhy.includes(att.zarizeni_druh))
             druhy.push(att.zarizeni_druh); 
+        if(!mesta.includes(att.nazev_okresu))
+            mesta.push(att.nazev_okresu); 
         let tr = document.createElement("tr");
         tr.id = att.ico;
         let td1 =  document.createElement("td");td1.innerHTML = att.nazev;td1.setAttribute("keyeee",att.nazev);
@@ -170,15 +173,22 @@ async function getStudentiVS(){
     })
 }
 
-
-
 function selecty(){
-    let select = document.getElementById("selectType");
-    for(i =0; i< druhy.length;i++){
+    let selectType = document.getElementById("selectType");
+    let selectTown = document.getElementById("selectTown");
+    let selectDistance = document.getElementById("selectDistance");
+
+    for(i = 0; i< druhy.length; i++){
         let op = document.createElement("option");
         op.innerHTML = druhy[i];
         op.value = druhy[i];
         select.appendChild(op);
+    }
+
+    for(i = 0; i< mesta.length; i++){
+        let op = document.createElement("option");
+        op.innerHTML = mesta[i];
+        selectTown.appendChild(op);
     }
 }
 
@@ -206,8 +216,13 @@ function filtrovat(){
             else{
                 pokrocilyData[i].style.display = "block";
 
-            }
 
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php.php", true);
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            let odpoved = this.responseText;
+            document.getElementById("vystup").innerHTML = odpoved;
         }
     }
     if(tytown != ""){
@@ -229,6 +244,5 @@ function filtrovat(){
 }
 
 getSkoly();
-console.log(druhy);
 getStudentiSS();
 getStudentiVS();

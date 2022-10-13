@@ -24,15 +24,15 @@
                 <select name="town" id="selectTown" >
                     <option value="" disabled selected>Okres</option></select>
                 <input type="number" name="distance" id="selectDistance" placeholder="Maximální vzdálenost" step="5">
-                <button>Filtrovat</button>
+                <button type="button" onclick="filtrovat()">Filtrovat</button>
             </form>
         </div>
         <div id="mapDiv">
             <div id="map"></div>
         </div>
-        <div id="results">
+        <table id="results">
 
-        </div>
+        </table>
     </main>
     <footer>
         <address>
